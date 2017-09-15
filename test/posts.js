@@ -60,4 +60,29 @@ describe("Posts", () => {
       done();
     });
   });
+
+  it("PUT /posts/:id should return 200", (done) => {
+    request(app)
+    .put(`/posts/${post._id}`)
+    .send({
+      "post": {
+        "title": "Updated title",
+        "post_text": "Updated body",
+        "post_image": "Updated image"
+      }
+    })
+    .end((err, result) => {
+      expect(result.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it("DELETE /posts/:id should return 200", (done) => {
+    request(app)
+    .delete(`/posts/${post._id}`)
+    .end((err, result) => {
+      expect(result.statusCode).to.equal(200);
+      done();
+    });
+  });
 });
